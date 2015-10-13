@@ -1,0 +1,12 @@
+Klasser som ska skapas
+
+Namn		Taget av		Klar?
+Kvitto
+Rabatter
+Vara		Jacob
+Kvittorad
+Valuta
+Dollar
+SEK
+Euro
+Pengar
