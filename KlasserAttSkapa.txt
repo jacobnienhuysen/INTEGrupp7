@@ -1,7 +1,7 @@
 Klasser som ska skapas
 
 Namn		Taget av		Klar?
-Kvitto
+Kvitto		Erik
 Rabatter
 Vara		Jacob
 Kvittorad	Leo
