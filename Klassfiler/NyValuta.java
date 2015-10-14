@@ -1,7 +1,5 @@
 package kvittoTDD;
 
-import java.math.BigDecimal;
-
 public class NyValuta {
 
 	String valutaNamn;
