@@ -1,9 +1,15 @@
 Klasser som ska skapas
 
 Namn		Taget av		Klar?
+<<<<<<< HEAD
 Kvitto		Erik			Klar	
 Rabatter	
 Vara		Jacob			Klar
+=======
+Kvitto		Erik
+Rabatter
+Vara		Jacob
+>>>>>>> origin/master
 Kvittorad	Leo
 Valuta		Palle			Klar		
 Dollar		Palle			Klar
