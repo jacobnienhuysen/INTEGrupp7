@@ -5,8 +5,8 @@ Kvitto
 Rabatter
 Vara		Jacob
 Kvittorad
-Valuta		Palle
-Dollar		Palle
-SEK		Palle
-Euro		Palle
+Valuta		
+Dollar		
+SEK		
+Euro		
 Pengar
