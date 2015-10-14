@@ -4,7 +4,7 @@ Namn		Taget av		Klar?
 Kvitto
 Rabatter
 Vara		Jacob
-Kvittorad
+Kvittorad	Leo
 Valuta		
 Dollar		
 SEK		
