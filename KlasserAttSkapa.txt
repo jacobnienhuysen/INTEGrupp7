@@ -1,12 +1,11 @@
 Klasser som ska skapas
 
 Namn		Taget av		Klar?
-Kvitto
-Rabatter
-Vara		Jacob
+Kvitto		Erik			Klar	
+Rabatter	
+Vara		Jacob			Klar
 Kvittorad	Leo
-Valuta		
-Dollar		
-SEK		
-Euro		
-Pengar
+Valuta		Palle			Klar		
+Dollar		Palle			Klar
+SEK		Palle			Klar
+Euro		Palle			Klar
