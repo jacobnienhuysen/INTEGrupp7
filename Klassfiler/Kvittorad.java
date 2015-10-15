@@ -1,29 +1,36 @@
-package Kvittorad;
+package inte.projekt;
+
+import java.text.DecimalFormat;
 
 public class Kvittorad {
 	
-	private String vara;
+	private Vara vara;
 	private int antal;
 	public double totalPris;
+        DecimalFormat formatter = new DecimalFormat("#0.00");
 	
-	public Kvittorad(String vara, int antal){
+	public Kvittorad(Vara vara, int antal){
 		if(antal <= 0){
 			throw new IllegalArgumentException();
 		}
 		
 		this.vara = vara;
 		this.antal = antal;
-		räknaTotal(antal);
+		raknaTotal(antal);
 	}
 
-	public void räknaTotal(int antal){
+	public void raknaTotal(int antal){
 		if(antal < 0){
 			throw new IllegalArgumentException("Priset kan inte bli negativt");
 		}
-		totalPris = antal * 10;//Påhittat pris.
+		totalPris = antal * vara.getJfrPris();//Pï¿½hittat pris.
 	}
+        
+        public double getTotalPris(){
+            return(antal * vara.getJfrPris());
+        }
 
-	public String getVara() {
+	public Vara getVara() {
 		return vara;
 	}
 	
@@ -31,14 +38,14 @@ public class Kvittorad {
 		return antal;
 	}
 	
-	public void addAntal(int ökning){
-		if(ökning <= 0){
-			throw new IllegalArgumentException("Ökning av antal måste vara större än 0");
+	public void addAntal(int okning){
+		if(okning <= 0){
+			throw new IllegalArgumentException("Ã–kning av antal mÃ¥ste vara stÃ¶rre Ã¤n 0");
 		}
-		antal += ökning;
+		antal += okning;
 	}
 	
 	public String toString(){
-		return "Vara: "+vara+" Antal: "+antal+" Totalpris: "+totalPris;
+		return "Vara: "+vara+" Antal: "+antal+vara.getEnhet()+" Totalpris: "+formatter.format(getTotalPris());
 	}
 }
