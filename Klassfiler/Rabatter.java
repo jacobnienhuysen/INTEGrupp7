@@ -15,7 +15,7 @@ public class Rabatter {
     private Double rabatt;
     public Rabatter(String n, Double r){
         namn = n;
-        rabatt = r;
+        rabatt = (100-r)/100;
     }
     public Double getRabatt(){
         return rabatt;
