@@ -21,7 +21,8 @@ import static org.junit.Assert.*;
  * @author Erik
  */
 public class KvittoTest {
-    
+    Vara v;
+    Kvittorad kr;
     public KvittoTest() {
     }
     
@@ -35,6 +36,8 @@ public class KvittoTest {
     
     @Before
     public void setUp() {
+        v = new Vara("Korv", 20.9, "st", "5000000000000");
+        kr = new Kvittorad(v, 1);
     }
     
     @After
@@ -55,17 +58,17 @@ public class KvittoTest {
     
     @Test
     public void testKvittonummer(){
-        Kvitto k = new Kvitto(0);
+        Kvitto k = new Kvitto(0, kr);
         assertEquals(0, k.getKvittonummer());
     }
     @Test
     public void testKvittodatum(){
-        Kvitto k = new Kvitto(0);
-        assertEquals("14/10/15", k.getDatum());
+        Kvitto k = new Kvitto(0, kr);
+        assertEquals("15/10/15", k.getDatum());
     }
     @Test
     public void testKvittotid(){
-        Kvitto k = new Kvitto(0);
+        Kvitto k = new Kvitto(0, kr);
         DateFormat df = new SimpleDateFormat("HH:mm:ss");
         Date dateobj = new Date();
         String tid = df.format(dateobj);
@@ -73,29 +76,32 @@ public class KvittoTest {
     }
     @Test
     public void testKvittovaluta(){
-        Kvitto k = new Kvitto(0);
-        k.setValuta("SEK");
-        assertEquals("SEK", k.getValuta());
+        Kvitto k = new Kvitto(0, kr);
+        k.setValuta(new NyValuta("sek"));
+        assertEquals("sek", k.getValuta().getValutaNamn());
     }
-    @Test
+    @Test(expected = IllegalArgumentException.class) 
     public void testSetvaluta(){
-        Kvitto k = new Kvitto(0);
-        k.setValuta("blaja");
+        Kvitto k = new Kvitto(0, kr);
+        k.setValuta(new NyValuta("blaja"));
         assertEquals(null, k.getValuta());
     }
-    /*@Test
-    public void testRaknaSumma(){
-        Kvitto k = new Kvitto(0);
-        k.addKvittorad(5.4);
-        k.addKvittorad(9.0);
-        k.addKvittorad(765.99);
-        assertEquals(780.39, k.getTotalSumma(), 0.0);
+    @Test
+    public void testKvittoMedAnnat(){
+        Vara v = new Vara("Korv", 20.9, "st", "5000000000000");
+        Vara v2 = new Vara("Banan", 19.35, "g", "5000000000001");
+        Kvittorad kr = new Kvittorad(v, 1);
+        Kvittorad kr2 = new Kvittorad(v2, 1);
+        Kvittorad kr3 = new Kvittorad(v, 3);
+        Kvitto k = new Kvitto(1, kr);
+        NyValuta valuta = new NyValuta("dollar");
+        Rabatter rabatt = new Rabatter("Student Rabatt", 10.0);
+        //k.setValuta(valuta);
+        k.addRabatt(rabatt);
+        k.addKvittorad(kr2);
+        k.addKvittorad(kr3);
+        System.out.println(k);
+        //assertEquals(12.66, k.getTotalSumma(), 0.01);
+        assertEquals(102.95*0.9, k.getTotalSumma(), 0.001);
     }
-    
-    @Test(expected = IllegalArgumentException.class) 
-    public void testOverflowSumma(){
-        Kvitto k = new Kvitto(0);
-        k.addKvittorad(Double.MAX_VALUE);
-        assertEquals(Double.MAX_VALUE, k.getTotalSumma(), 0.0);
-    }*/
 }
