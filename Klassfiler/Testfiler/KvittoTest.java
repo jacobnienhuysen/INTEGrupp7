@@ -24,6 +24,7 @@ public class KvittoTest {
     Vara v;
     Kvittorad kr;
     Kvitto k;
+    Rabatter r;
     public KvittoTest() {
     }
     
@@ -40,6 +41,7 @@ public class KvittoTest {
         v = new Vara("Korv", 20.9, "st", "5000000000000");
         kr = new Kvittorad(v, 1);
         k = new Kvitto(0, kr);
+        r = new Rabatter("TestR", 10);
     }
     
     @After
@@ -105,5 +107,22 @@ public class KvittoTest {
         System.out.println(k);
         //assertEquals(12.66, k.getTotalSumma(), 0.01);
         assertEquals(102.95*0.9, k.getTotalSumma(), 0.001);
+    }
+    @Test
+    public void testKvittoMore(){
+        Kvitto k = new Kvitto(0, kr);
+        k.addKvittorad(kr);
+        System.out.println(k);
+        assertEquals(20.9*2, k.getTotalSumma(), 0.0);
+    }
+    @Test
+    public void testKvittoMedAndraRabatter(){
+        v.setRabatt(r);
+        k.addKvittorad(kr);
+        Rabatter rab = new Rabatter("hej", 15);
+        kr.setRabatt(r);
+        k.setRabatt(rab);
+        System.out.println(k);
+        assertEquals(((18.81*2)*0.9)*0.85, k.getTotalSumma(), 0.001);
     }
 }

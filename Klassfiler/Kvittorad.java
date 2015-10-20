@@ -46,7 +46,7 @@ public class Kvittorad {
 		return antal;
 	}
         public double getRabattPris(){
-            return rabatt.getRabatteratPris(this.getTotalPris());
+            return rabatt.getRabatteratPris(this.getPris());
         }
 	
 	public void addAntal(int okning){

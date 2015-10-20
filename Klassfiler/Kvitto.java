@@ -75,9 +75,7 @@ public class Kvitto {
     }
     
     public double getRabattPris(double inp){
-        double sum = inp;
-        sum = rabatt.getRabatteratPris(sum);
-        return sum;
+        return rabatt.getRabatteratPris(inp);
     }
     
     public Double getTotalSumma(){
@@ -85,8 +83,8 @@ public class Kvitto {
         Double sum = 0.0;
         
         for(Kvittorad kr : kvittorader){
-            double add = kr.getAntal()*kr.getVara().getJfrPris();
-            if(sum+ add>= Double.MAX_VALUE)
+            double add = kr.getTotalPris();
+            if(sum + add>= Double.MAX_VALUE)
                 throw new IllegalArgumentException("Summan är för stor!");
             
             else
@@ -94,7 +92,9 @@ public class Kvitto {
         }
         if(valuta != null)
             sum = sum/valuta.getValutaKurs();
-        sum = this.getRabattPris(sum);
+        if(rabatt != null)
+            sum = this.getRabattPris(sum);
+        
         return sum;
     }
     
