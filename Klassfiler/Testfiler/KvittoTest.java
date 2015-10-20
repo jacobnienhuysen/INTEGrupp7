@@ -23,6 +23,7 @@ import static org.junit.Assert.*;
 public class KvittoTest {
     Vara v;
     Kvittorad kr;
+    Kvitto k;
     public KvittoTest() {
     }
     
@@ -38,6 +39,7 @@ public class KvittoTest {
     public void setUp() {
         v = new Vara("Korv", 20.9, "st", "5000000000000");
         kr = new Kvittorad(v, 1);
+        k = new Kvitto(0, kr);
     }
     
     @After
@@ -58,17 +60,17 @@ public class KvittoTest {
     
     @Test
     public void testKvittonummer(){
-        Kvitto k = new Kvitto(0, kr);
+        k = new Kvitto(0, kr);
         assertEquals(0, k.getKvittonummer());
     }
     @Test
     public void testKvittodatum(){
-        Kvitto k = new Kvitto(0, kr);
-        assertEquals("15/10/15", k.getDatum());
+        k = new Kvitto(0, kr);
+        assertEquals("20/10/15", k.getDatum());
     }
     @Test
     public void testKvittotid(){
-        Kvitto k = new Kvitto(0, kr);
+        k = new Kvitto(0, kr);
         DateFormat df = new SimpleDateFormat("HH:mm:ss");
         Date dateobj = new Date();
         String tid = df.format(dateobj);
@@ -76,13 +78,13 @@ public class KvittoTest {
     }
     @Test
     public void testKvittovaluta(){
-        Kvitto k = new Kvitto(0, kr);
+        k = new Kvitto(0, kr);
         k.setValuta(new NyValuta("sek"));
         assertEquals("sek", k.getValuta().getValutaNamn());
     }
-    @Test(expected = IllegalArgumentException.class) 
+    @Test(expected = IllegalArgumentException.class)
     public void testSetvaluta(){
-        Kvitto k = new Kvitto(0, kr);
+        k = new Kvitto(0, kr);
         k.setValuta(new NyValuta("blaja"));
         assertEquals(null, k.getValuta());
     }
@@ -95,9 +97,9 @@ public class KvittoTest {
         Kvittorad kr3 = new Kvittorad(v, 3);
         Kvitto k = new Kvitto(1, kr);
         NyValuta valuta = new NyValuta("dollar");
-        Rabatter rabatt = new Rabatter("Student Rabatt", 10.0);
+        Rabatter rabatt = new Rabatter("Student Rabatt", 10);
         //k.setValuta(valuta);
-        k.addRabatt(rabatt);
+        k.setRabatt(rabatt);
         k.addKvittorad(kr2);
         k.addKvittorad(kr3);
         System.out.println(k);

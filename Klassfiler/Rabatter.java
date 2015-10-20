@@ -13,9 +13,12 @@ package inte.projekt;
 public class Rabatter {
     private String namn;
     private Double rabatt;
-    public Rabatter(String n, Double r){
+    public Rabatter(String n, int r){
+        if(r > 100 || r < 0)
+            throw new IllegalArgumentException("Måste vara mellan 0 och 100");
+            
         namn = n;
-        rabatt = (100-r)/100;
+        rabatt = (double)(100-r)/100;
     }
     public Double getRabatt(){
         return rabatt;

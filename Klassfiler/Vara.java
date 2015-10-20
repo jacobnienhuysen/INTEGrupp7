@@ -1,3 +1,4 @@
+package inte.projekt;
 import java.text.DecimalFormat;
 
 
@@ -7,26 +8,27 @@ public class Vara {
 	private double jfrPris;
 	private String enhet;
 	private String streckkod;
+        private Rabatter rabatt;
 	DecimalFormat formatter = new DecimalFormat("#0.00");  
 	
 	public Vara(String n, double p, String e, String sk){
-		if(n.length()<1 || !n.matches(".*[a-zA-Z0-9åäöÅÄÖ]+.*"))
-			throw new IllegalArgumentException("Ogiltigt namn på vara");
+		if(n.length()<1 || !n.matches(".*[a-zA-Z0-9Ã¥Ã¤Ã¶Ã…Ã„Ã–]+.*"))
+			throw new IllegalArgumentException("Ogiltigt namn pÃ¥ vara");
 
 		if(!e.equalsIgnoreCase("st") && !e.equalsIgnoreCase("g") && !e.equalsIgnoreCase("hg") && !e.equalsIgnoreCase("kg"))
-			throw new IllegalArgumentException(e + " är inte en giltig enhet!");
+			throw new IllegalArgumentException(e + " Ã¤r inte en giltig enhet!");
 		
 		if(p < 0)
-			throw new IllegalArgumentException(p + " är inte ett giltigt pris!");
+			throw new IllegalArgumentException(p + " Ã¤r inte ett giltigt pris!");
 		
 		
 		for (int i = 0; i < sk.length(); i++) {
 			if (!Character.isDigit(sk.charAt(i)))
-				throw new IllegalArgumentException("Streckkoden får enbart innehålla siffror");
+				throw new IllegalArgumentException("Streckkoden fÃ¥r enbart innehÃ¥lla siffror");
 		}
 		
 		if(sk.length()!=13)
-			throw new IllegalArgumentException("Ogiltig längd på streckkoden.");
+			throw new IllegalArgumentException("Ogiltig lÃ¤ngd pÃ¥ streckkoden.");
 		
 		namn = n;
 		jfrPris = p;
@@ -39,8 +41,15 @@ public class Vara {
 	}
 	
 	public double getJfrPris(){
-		return jfrPris;
+                return jfrPris;
 	}
+        
+        public double getPris(){
+            if(rabatt == null)
+                return jfrPris;
+            else
+                return getRabattPris();
+        }
 	
 	public String getEnhet(){
 		return enhet;
@@ -49,6 +58,14 @@ public class Vara {
 	public String getStreckkod(){
 		return streckkod;
 	}
+        
+        public double getRabattPris(){
+            return rabatt.getRabatteratPris(jfrPris);
+        }
+        
+        public void setRabatt(Rabatter r){
+            rabatt = r;
+        }
 	
 	public String toString(){
 		if(enhet.equalsIgnoreCase("g")){

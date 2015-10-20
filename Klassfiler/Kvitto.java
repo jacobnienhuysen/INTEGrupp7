@@ -22,8 +22,8 @@ public class Kvitto {
     private String datum;
     private String tid;
     private NyValuta valuta;
-    ArrayList<Kvittorad> kvittorader = new ArrayList<>();
-    ArrayList<Rabatter> rabatter = new ArrayList<>();
+    private ArrayList<Kvittorad> kvittorader = new ArrayList<>();
+    private Rabatter rabatt;
     DecimalFormat formatter = new DecimalFormat("#0.00");
     
     public Kvitto(int knr, Kvittorad kr){
@@ -58,10 +58,9 @@ public class Kvitto {
         valuta = val;
     }
     
-    public void addRabatt(Rabatter r){
-        rabatter.add(r);
+    public void setRabatt(Rabatter r){
+        rabatt = r;
     }
-    
     
     public void addKvittorad(Kvittorad kRad){
         boolean found = false;
@@ -77,9 +76,7 @@ public class Kvitto {
     
     public double getRabattPris(double inp){
         double sum = inp;
-        for(Rabatter r : rabatter){
-            sum = r.getRabatteratPris(sum);
-        }
+        sum = rabatt.getRabatteratPris(sum);
         return sum;
     }
     

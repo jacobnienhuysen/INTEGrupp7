@@ -1,5 +1,6 @@
-import static org.junit.Assert.*;
+package inte.projekt;
 
+import static org.junit.Assert.*;
 import org.junit.Test;
 
 
@@ -14,8 +15,8 @@ public class VaraTest {
 	
 	@Test
 	public void getVarasNamn(){
-		Vara v = new Vara("Lättmjölk", 8.5, "st", "0987654321234");
-		assertEquals("Lättmjölk", v.getNamn());
+		Vara v = new Vara("LÃ¤ttmjÃ¶lk", 8.5, "st", "0987654321234");
+		assertEquals("LÃ¤ttmjÃ¶lk", v.getNamn());
 		
 		Vara g = new Vara("Grillkol", 39.90, "st", "0987654321234");
 		assertEquals("Grillkol", g.getNamn());
@@ -23,7 +24,7 @@ public class VaraTest {
 	
 	@Test
 	public void getVarasJfrPris(){
-		Vara v = new Vara("Lättmjölk", 8.50, "st", "0987654321234");
+		Vara v = new Vara("LÃ¤ttmjÃ¶lk", 8.50, "st", "0987654321234");
 		assertEquals(8.50, v.getJfrPris(), 0.001);
 		
 		Vara f = new Vara("Hundmat", 90, "st", "0987654321234");
@@ -32,16 +33,16 @@ public class VaraTest {
 	
 	@Test
 	public void getVarasEnhet(){
-		Vara v = new Vara("Lättmjölk", 8.50, "st", "0987654321234");
+		Vara v = new Vara("LÃ¤ttmjÃ¶lk", 8.50, "st", "0987654321234");
 		assertEquals("st", v.getEnhet());
 		
 		Vara g = new Vara("Saffran", 40, "g", "0987654321234");
 		assertEquals("g", g.getEnhet());
 		
-		Vara h = new Vara("Lösgodis", 25, "hg", "0987654321234");
+		Vara h = new Vara("LÃ¶sgodis", 25, "hg", "0987654321234");
 		assertEquals("hg", h.getEnhet());
 		
-		Vara k = new Vara("Äpplen", 19.45, "kg", "0987654321234");
+		Vara k = new Vara("Ã„pplen", 19.45, "kg", "0987654321234");
 		assertEquals("kg", k.getEnhet());
 		
 	}
@@ -60,7 +61,7 @@ public class VaraTest {
 		
 		Vara f = new Vara("Senap", Double.MIN_VALUE, "st", "0987654321234");
 		
-		Vara g = new Vara("Gräslök", Double.MAX_VALUE , "g", "0987654321234");
+		Vara g = new Vara("GrÃ¤slÃ¶k", Double.MAX_VALUE , "g", "0987654321234");
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
@@ -88,21 +89,27 @@ public class VaraTest {
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void testaStreckkodLängd(){
+	public void testaStreckkodLÃ¤ngd(){
 		Vara g = new Vara("Pengar", 6, "hg", "858585858599");
 		Vara d = new Vara("Pengar", 6, "kg", "00000987654321");
 	}
 	
-	@Test
+	/*@Test
 	public void toStringTest(){
-		Vara g = new Vara("Äpplen", 29.90, "kg", "0987654321234");
-		assertEquals("Äpplen, 29,90/kg", g.toString());
+		Vara g = new Vara("Ã„pplen", 29.90, "kg", "0987654321234");
+		assertEquals("Ã„pplen, 29,90/kg", g.toString());
 		
 		Vara s = new Vara("Grillkol", 39.90, "st", "0987654321234");
 		assertEquals("Grillkol, 39,90/st", s.toString());
-	}
+	}*/
 	
-	
+	@Test
+        public void testVaraMedRabatt(){
+            Vara s = new Vara("Grillkol", 39.90, "st", "0987654321234");
+            Rabatter r = new Rabatter("TestR", 10);
+            s.setRabatt(r);
+            assertEquals(35.91, s.getRabattPris(), 0.0);
+        }
 	
 	
 
