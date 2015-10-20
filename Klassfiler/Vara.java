@@ -15,7 +15,7 @@ public class Vara {
 		if(n.length()<1 || !n.matches(".*[a-zA-Z0-9åäöÅÄÖ]+.*"))
 			throw new IllegalArgumentException("Ogiltigt namn på vara");
 
-		if(!e.equalsIgnoreCase("st") && !e.equalsIgnoreCase("g") && !e.equalsIgnoreCase("hg") && !e.equalsIgnoreCase("kg"))
+		if(!e.equalsIgnoreCase("st") && !e.equalsIgnoreCase("g") && !e.equalsIgnoreCase("hg") && !e.equalsIgnoreCase("kg") && !e.equalsIgnoreCase("l"))
 			throw new IllegalArgumentException(e + " är inte en giltig enhet!");
 		
 		if(p < 0)
@@ -75,6 +75,8 @@ public class Vara {
 			return namn + ", " + formatter.format(jfrPris*10) + "/kg";
 		else if(enhet.equalsIgnoreCase("kg"))
 			return namn + ", " + formatter.format(jfrPris) + "/kg";
+		else if(enhet.equalsIgnoreCase("l"))
+			return namn + ", " + formatter.format(jfrPris) + "/l";
 		else
 			return namn + ", " + formatter.format(jfrPris) + "/st"; 
 	}
