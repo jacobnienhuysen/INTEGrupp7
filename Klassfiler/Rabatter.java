@@ -14,6 +14,9 @@ public class Rabatter {
     private String namn;
     private Double rabatt;
     public Rabatter(String n, int r){
+    	if(n.length()<1 || !n.matches(".*[a-zA-Z0-9åäöÅÄÖ]+.*"))
+			throw new IllegalArgumentException("Ogiltigt namn på vara");
+    	
         if(r > 100 || r < 0)
             throw new IllegalArgumentException("Måste vara mellan 0 och 100");
             
