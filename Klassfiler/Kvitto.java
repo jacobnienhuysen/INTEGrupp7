@@ -1,6 +1,6 @@
 /*
 TODO:
-Ã„ndra listans datatyp till "Kvittorad"
+Ändra listans datatyp till "Kvittorad"
 Koppla valuta med kvitto
  */
 
@@ -28,7 +28,9 @@ public class Kvitto {
     
     public Kvitto(int knr, Kvittorad kr){
         if(knr < 0)
-            throw new IllegalArgumentException("Kvittonummer kan inte vara mindre Ã¤n 0");
+            throw new IllegalArgumentException("Kvittonummer kan inte vara mindre än 0");
+        if(kr==null)
+        	throw new IllegalArgumentException("Kvittot måste innehålla minst en kvittorad");
             
         kvittonummer = knr;
         DateFormat df = new SimpleDateFormat("dd/MM/yy");
@@ -85,7 +87,7 @@ public class Kvitto {
         for(Kvittorad kr : kvittorader){
             double add = kr.getTotalPris();
             if(sum + add>= Double.MAX_VALUE)
-                throw new IllegalArgumentException("Summan Ã¤r fÃ¶r stor!");
+                throw new IllegalArgumentException("Summan är för stor!");
             
             else
                 sum = sum+add;
