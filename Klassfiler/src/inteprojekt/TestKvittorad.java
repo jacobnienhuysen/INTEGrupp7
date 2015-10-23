@@ -4,8 +4,11 @@
  * and open the template in the editor.
  */
 
-package inte.projekt;
+package inteprojekt;
 
+import inteprojekt.Vara;
+import inteprojekt.Rabatter;
+import inteprojekt.Kvittorad;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -37,24 +40,24 @@ public class TestKvittorad {
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
-	public void antalKanInteVaraMindreÄnNoll(){
+	public void antalKanInteVaraMindreAnNoll(){
 		Kvittorad kvittorad = new Kvittorad(v, -1);
 	}
 	
 	@Test
-	public void duKanFåFramVaranFrånKvittoraden(){
+	public void duKanFaFramVaranFranKvittoraden(){
 		Kvittorad kvittorad = new Kvittorad(v, 4);
 		assertEquals("Korv", kvittorad.getVara().getNamn());
 	}
 	
 	@Test
-	public void duKanFåFramAntaletFrånKvittoraden(){
+	public void duKanFaFramAntaletFranKvittoraden(){
 		Kvittorad kvittorad = new Kvittorad(v, 4);
 		assertEquals(4, kvittorad.getAntal());
 	}
 	
 	@Test
-	public void duKanÖkaAntaletPåEnKvittorad(){
+	public void duKanOkaAntaletPaEnKvittorad(){
 		Kvittorad kvittorad = new Kvittorad(v, 4);
 		kvittorad.addAntal(1);
 		assertEquals(5, kvittorad.getAntal());
@@ -62,19 +65,19 @@ public class TestKvittorad {
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
-	public void ökningAvAntalKanInteVaraNoll(){
+	public void okningAvAntalKanInteVaraNoll(){
 		Kvittorad kvittorad = new Kvittorad(v, 4);
 		kvittorad.addAntal(0);
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
-	public void ökningAvAntalKanInteVaraMindreÄnNoll(){
+	public void okningAvAntalKanInteVaraMindreAnNoll(){
 		Kvittorad kvittorad = new Kvittorad(v, 4);
 		kvittorad.addAntal(-1);
 	}
 	
 	@Test
-	public void totalPrisetRäknasUt(){
+	public void totalPrisetRaknasUt(){
 		Kvittorad kvittorad = new Kvittorad(v, 4);
 		kvittorad.getTotalPris();
 	}

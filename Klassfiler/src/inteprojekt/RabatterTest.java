@@ -4,8 +4,9 @@
  * and open the template in the editor.
  */
 
-package inte.projekt;
+package inteprojekt;
 
+import inteprojekt.Rabatter;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

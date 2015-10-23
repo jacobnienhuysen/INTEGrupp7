@@ -4,16 +4,18 @@
  * and open the template in the editor.
  */
 
-package inte.projekt;
+package inteprojekt;
 
+import inteprojekt.Vara;
+import inteprojekt.Kvitto;
+import inteprojekt.Rabatter;
+import inteprojekt.Kvittorad;
+import inteprojekt.NyValuta;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import junit.framework.JUnit4TestAdapter;
+import org.junit.*;
 import static org.junit.Assert.*;
 
 /**
@@ -21,6 +23,9 @@ import static org.junit.Assert.*;
  * @author Erik
  */
 public class KvittoTest {
+    public static junit.framework.Test suite() {
+	return new JUnit4TestAdapter(KvittoTest.class);
+    }
     Vara v;
     Kvittorad kr;
     Kvitto k;
@@ -68,7 +73,7 @@ public class KvittoTest {
     @Test
     public void testKvittodatum(){
         k = new Kvitto(0, kr);
-        assertEquals("20/10/15", k.getDatum());
+        assertEquals("23/10/15", k.getDatum());
     }
     @Test
     public void testKvittotid(){

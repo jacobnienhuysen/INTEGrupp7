@@ -1,5 +1,7 @@
-package inte.projekt;
+package inteprojekt;
 
+import inteprojekt.Vara;
+import inteprojekt.Rabatter;
 import static org.junit.Assert.*;
 import org.junit.Test;
 

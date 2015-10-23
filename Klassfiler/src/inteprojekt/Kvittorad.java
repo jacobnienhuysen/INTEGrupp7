@@ -1,4 +1,4 @@
-package inte.projekt;
+package inteprojekt;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;

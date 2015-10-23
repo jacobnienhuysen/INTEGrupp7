@@ -1,4 +1,4 @@
-package inte.projekt;
+package inteprojekt;
 
 public class NyValuta {
 
