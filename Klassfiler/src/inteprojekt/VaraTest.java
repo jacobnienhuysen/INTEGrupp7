@@ -60,7 +60,6 @@ public class VaraTest {
 	@Test(expected=IllegalArgumentException.class)
 	public void enterFelaktigtPris(){
 		Vara v = new Vara("Senap", -0.01, "st", "0987654321234");
-		
 		Vara f = new Vara("Senap", Double.MIN_VALUE, "st", "0987654321234");
 		
 		Vara g = new Vara("Gräslök", Double.MAX_VALUE , "g", "0987654321234");
@@ -113,6 +112,16 @@ public class VaraTest {
             assertEquals(35.91, s.getRabattPris(), 0.0);
         }
 	
+	@Test
+	public void testToStringMedKg(){
+		Vara v = new Vara("Banan", 14, "kg", "0987654321234");
+		v.toString();
+	}
 	
+	@Test
+	public void testToStringMedHg(){
+		Vara v= new Vara("L�sgodis", 14, "hg", "0987654321234");
+		v.toString();
+	}
 
 }

@@ -11,11 +11,15 @@ import inteprojekt.Kvitto;
 import inteprojekt.Rabatter;
 import inteprojekt.Kvittorad;
 import inteprojekt.NyValuta;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 import junit.framework.JUnit4TestAdapter;
+
 import org.junit.*;
+
 import static org.junit.Assert.*;
 
 /**
@@ -70,10 +74,17 @@ public class KvittoTest {
         k = new Kvitto(0, kr);
         assertEquals(0, k.getKvittonummer());
     }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void testKvittonummerMindreAn0(){
+        k = new Kvitto(-2, kr);
+        assertEquals(0, k.getKvittonummer());
+    }
+    
     @Test
     public void testKvittodatum(){
         k = new Kvitto(0, kr);
-        assertEquals("23/10/15", k.getDatum());
+        assertEquals("26/10/15", k.getDatum());
     }
     @Test
     public void testKvittotid(){
@@ -129,5 +140,14 @@ public class KvittoTest {
         k.setRabatt(rab);
         System.out.println(k);
         assertEquals(((18.81*2)*0.9)*0.85, k.getTotalSumma(), 0.001);
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void SummaForStor(){
+        Vara v2 = new Vara("Banan", Double.MAX_VALUE, "g", "5000000000001");
+        Kvittorad kr = new Kvittorad(v2, 1);
+        Kvitto k = new Kvitto(1, kr);
+        System.out.println(k);
+
     }
 }
